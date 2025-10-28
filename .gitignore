@@ -1,0 +1,44 @@
+# Archivos de compilación
+/build/
+*/build/
+
+# Archivos de Android Studio
+/.idea/
+/*.iml
+.gradle
+/local.properties
+/captures/
+/.externalNativeBuild/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Kotlin
+*.kotlin_module
+
+# Archivos de logs
+*.log
+
+# Archivos de prueba temporales
+*.tmp
+*.swp
+
+# Dependencias de Gradle
+/.gradle/
+
+# Configuración de paquetes locales
+*.jar
+*.war
+*.ear
+
+# Configuración de lint
+lint/intermediates/
+lint/generated/
+
+# Archivos de Proguard/R8
+proguard/
+
+# Archivos de Android NDK
+obj/
+*.so
