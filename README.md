@@ -39,3 +39,5 @@ Este proyecto tiene como objetivo demostrar conocimientos en desarrollo Android 
 - Consumo de APIs REST con **Retrofit**
 - Inyección de dependencias con **Hilt**
 - Gestión de estados reactiva y **Navigation Compose**
+
+> ⚠️ Actualmente la app está en desarrollo por lo que puede que haya funcionalidades que aun no estén implementadas al 100%.
