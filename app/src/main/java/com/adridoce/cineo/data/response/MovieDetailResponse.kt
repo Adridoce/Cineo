@@ -1,26 +1,34 @@
 package com.adridoce.cineo.data.response
 
-import com.adridoce.cineo.domain.entity.MovieEntity
+import com.adridoce.cineo.domain.entity.MovieDetailEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MovieDetailsResponse(
+data class MovieDetailResponse(
     val id: Int,
     val title: String,
     val overview: String,
     val tagline: String,
-    @SerialName("poster_path") val posterUrl: String?,
+    val genres: List<Genre>,
+    @SerialName("poster_path") val posterUrl: String,
     @SerialName("release_date") val releaseDate: String,
     @SerialName("vote_average") val rating: Float
 )
 
-fun MovieDetailsResponse.toDomain(): MovieEntity {
-    return MovieEntity(
+@Serializable
+data class Genre(
+    val id: Int,
+    val name: String
+)
+
+fun MovieDetailResponse.toDomain(): MovieDetailEntity {
+    return MovieDetailEntity(
         id = id,
         title = title,
         overview = overview,
-        genreIds = listOf(),
+        tagline = tagline,
+        genres = genres.map { it.name },
         posterUrl = "https://image.tmdb.org/t/p/w500${posterUrl}",
         releaseDate = releaseDate,
         rating = rating

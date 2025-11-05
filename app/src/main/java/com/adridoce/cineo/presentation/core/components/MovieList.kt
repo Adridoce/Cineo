@@ -1,7 +1,6 @@
 package com.adridoce.cineo.presentation.core.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
@@ -9,7 +8,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.unit.dp
 import com.adridoce.cineo.domain.entity.MovieEntity
 
@@ -17,7 +15,7 @@ import com.adridoce.cineo.domain.entity.MovieEntity
 fun TrendingMoviesList(
     movies: List<MovieEntity>,
     listState: LazyListState,
-    modifier : Modifier = Modifier,
+    modifier: Modifier = Modifier,
     onMovieClick: (MovieEntity) -> Unit
 ) {
     LazyRow(
@@ -28,7 +26,7 @@ fun TrendingMoviesList(
             items = movies,
             key = { _, movie -> movie.id }
         ) { index, movie ->
-            MovieItem(
+            MovieListItem(
                 movie = movie,
                 modifier = modifier,
                 onClick = { onMovieClick(movie) }
@@ -41,13 +39,13 @@ fun TrendingMoviesList(
 fun SearchMoviesList(
     movies: List<MovieEntity>,
     onMovieClick: (MovieEntity) -> Unit,
-    modifier:Modifier = Modifier
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(movies){ movie ->
-            MovieItem(
+        items(movies) { movie ->
+            MovieListItem(
                 movie = movie,
                 modifier = modifier,
                 onClick = { onMovieClick(movie) }

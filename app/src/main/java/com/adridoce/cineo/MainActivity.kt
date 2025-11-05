@@ -23,9 +23,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CineoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     NavigationWrapper()
-                }
             }
         }
     }

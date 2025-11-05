@@ -30,7 +30,6 @@ import com.adridoce.cineo.presentation.core.components.SearchMoviesList
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
-    modifier: Modifier,
     viewModel: SearchViewModel = hiltViewModel(),
     navigateToDetail: (Int) -> Unit
 ) {
@@ -38,7 +37,7 @@ fun SearchScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 18.dp)
             .background(MaterialTheme.colorScheme.background),

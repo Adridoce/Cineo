@@ -2,6 +2,7 @@
 
 package com.adridoce.cineo.presentation.main
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -67,21 +68,20 @@ fun MainScreen(
             }
         }
     ) { padding ->
-        when (selectedTab) {
-            0 -> SearchScreen(
-                modifier = Modifier.padding(padding),
-                navigateToDetail = { id -> navigateToDetail(id) }
-            )
+        Box(modifier = Modifier.padding(padding)) {
+            when (selectedTab) {
+                0 -> SearchScreen(
+                    navigateToDetail = { id -> navigateToDetail(id) }
+                )
 
-            1 -> HomeScreen(
-                modifier = Modifier.padding(padding),
-                navigateToDetail = {}
-            )
+                1 -> HomeScreen(
+                    navigateToDetail = { id -> navigateToDetail(id) }
+                )
 
-            2 -> FavoritesScreen(
-                modifier = Modifier.padding(padding),
-                navigateToDetail = {}
-            )
+                2 -> FavoritesScreen(
+                    navigateToDetail = {}
+                )
+            }
         }
     }
 }

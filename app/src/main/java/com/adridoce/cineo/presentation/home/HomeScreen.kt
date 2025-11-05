@@ -27,7 +27,6 @@ import com.adridoce.cineo.presentation.core.components.TrendingMoviesList
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    modifier: Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
     navigateToDetail:(Int) -> Unit
 ) {
@@ -38,9 +37,9 @@ fun HomeScreen(
         trendListState.animateScrollToItem(0)
     }
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 18.dp, vertical = 8.dp),
+            .padding(horizontal = 18.dp),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically

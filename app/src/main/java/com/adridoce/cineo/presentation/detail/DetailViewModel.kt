@@ -3,6 +3,7 @@ package com.adridoce.cineo.presentation.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.adridoce.cineo.domain.entity.MovieDetailEntity
 import com.adridoce.cineo.domain.entity.MovieEntity
 import com.adridoce.cineo.domain.usecase.GetMovieDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,13 +31,28 @@ class DetailViewModel @Inject constructor(
 
     private fun getMovieDetails() {
         viewModelScope.launch(Dispatchers.IO) {
-            val movie = getMovieDetailsUseCase(movieId)
-            _uiState.update { it.copy(movie = movie) }
+
+            _uiState.value = _uiState.value.copy(isLoading = true)
+
+            try {
+                val movie = getMovieDetailsUseCase(movieId)
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false, movie = movie, errorMessage = null
+                )
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false,
+                    movie = null,
+                    errorMessage = "No se pudo cargar la información"
+                )
+            }
         }
     }
 
 }
 
 data class DetailUiState(
-    val movie: MovieEntity? = null // TODO: Revisar si es necesario que sea nullable
+    val isLoading: Boolean = true,
+    val movie: MovieDetailEntity? = null,
+    val errorMessage: String? = null
 )

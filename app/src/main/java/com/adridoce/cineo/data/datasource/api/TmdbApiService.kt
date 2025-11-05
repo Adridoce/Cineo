@@ -1,6 +1,6 @@
 package com.adridoce.cineo.data.datasource.api
 
-import com.adridoce.cineo.data.response.MovieDetailsResponse
+import com.adridoce.cineo.data.response.MovieDetailResponse
 import com.adridoce.cineo.data.response.MovieListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -27,5 +27,5 @@ interface TmdbApiService {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String = "8e7af49fafd448d939f624a4f0dbc934",
         @Query("language") language: String = "es-ES"
-    ): MovieDetailsResponse
+    ): MovieDetailResponse
 }
