@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adridoce.cineo.domain.entity.MovieDetailEntity
 import com.adridoce.cineo.domain.entity.MovieEntity
+import com.adridoce.cineo.domain.entity.TrailerEntity
 import com.adridoce.cineo.domain.usecase.GetMovieDetailsUseCase
+import com.adridoce.cineo.domain.usecase.GetMovieTrailerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     val getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    val getMovieTrailerUseCase: GetMovieTrailerUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -27,6 +30,14 @@ class DetailViewModel @Inject constructor(
 
     init {
         getMovieDetails()
+        getMovieTrailer()
+    }
+
+    private fun getMovieTrailer() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val trailer = getMovieTrailerUseCase(movieId)
+            _uiState.value = _uiState.value.copy(trailerKey = trailer)
+        }
     }
 
     private fun getMovieDetails() {
@@ -49,10 +60,16 @@ class DetailViewModel @Inject constructor(
         }
     }
 
+    fun onPlayTrailer(){
+        _uiState.update { it.copy(showTrailer = true) }
+    }
+
 }
 
 data class DetailUiState(
     val isLoading: Boolean = true,
     val movie: MovieDetailEntity? = null,
-    val errorMessage: String? = null
+    val trailerKey: String? = null,
+    val errorMessage: String? = null,
+    val showTrailer: Boolean = false
 )

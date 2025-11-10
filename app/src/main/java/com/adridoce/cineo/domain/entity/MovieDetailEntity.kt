@@ -6,7 +6,8 @@ data class MovieDetailEntity(
     val overview: String,
     val tagline: String,
     val genres: List<String>,
-    val posterUrl: String?,
+    val posterUrl: String,
+    val backgroundUrl: String,
     val releaseDate: String,
     val rating: Float
 )

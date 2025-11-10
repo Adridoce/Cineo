@@ -15,6 +15,11 @@ data class MovieResponse(
     @SerialName("vote_average") val rating: Float
 )
 
+@Serializable
+data class MovieListResponse(
+    val results: List<MovieResponse>
+)
+
 fun MovieResponse.toDomain(): MovieEntity {
     return MovieEntity(
         id = id,

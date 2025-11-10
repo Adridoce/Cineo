@@ -12,6 +12,7 @@ data class MovieDetailResponse(
     val tagline: String,
     val genres: List<Genre>,
     @SerialName("poster_path") val posterUrl: String,
+    @SerialName("backdrop_path") val backgroundUrl: String,
     @SerialName("release_date") val releaseDate: String,
     @SerialName("vote_average") val rating: Float
 )
@@ -30,6 +31,7 @@ fun MovieDetailResponse.toDomain(): MovieDetailEntity {
         tagline = tagline,
         genres = genres.map { it.name },
         posterUrl = "https://image.tmdb.org/t/p/w500${posterUrl}",
+        backgroundUrl = "https://image.tmdb.org/t/p/w500${backgroundUrl}",
         releaseDate = releaseDate,
         rating = rating
     )

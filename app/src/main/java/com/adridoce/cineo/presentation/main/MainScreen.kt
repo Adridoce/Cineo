@@ -20,9 +20,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.adridoce.cineo.presentation.core.components.NavItem
 import com.adridoce.cineo.presentation.favorites.FavoritesScreen
 import com.adridoce.cineo.presentation.home.HomeScreen
 import com.adridoce.cineo.presentation.search.SearchScreen
@@ -85,3 +85,8 @@ fun MainScreen(
         }
     }
 }
+
+data class NavItem(
+    val icon: ImageVector,
+    val label: String
+)

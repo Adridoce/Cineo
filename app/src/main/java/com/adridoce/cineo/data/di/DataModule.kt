@@ -2,9 +2,11 @@ package com.adridoce.cineo.data.di
 
 import com.adridoce.cineo.data.datasource.api.TmdbApiService
 import com.adridoce.cineo.data.repository.MovieDetailsRepositoryImpl
+import com.adridoce.cineo.data.repository.MovieTrailerRepositoryImpl
 import com.adridoce.cineo.data.repository.SearchMovieRepositoryImpl
 import com.adridoce.cineo.data.repository.TrendingMoviesRepositoryImpl
 import com.adridoce.cineo.domain.repository.MovieDetailsRepository
+import com.adridoce.cineo.domain.repository.MovieTrailerRepository
 import com.adridoce.cineo.domain.repository.SearchMovieRepository
 import com.adridoce.cineo.domain.repository.TrendingMoviesRepository
 import dagger.Module
@@ -33,6 +35,11 @@ object DataModule {
     @Provides
     fun provideMovieDetailsRepository(api: TmdbApiService): MovieDetailsRepository {
         return MovieDetailsRepositoryImpl(api)
+    }
+
+    @Provides
+    fun provideMovieTrailerRepository(api: TmdbApiService): MovieTrailerRepository{
+        return MovieTrailerRepositoryImpl(api)
     }
 
     @Provides

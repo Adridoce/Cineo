@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.adridoce.cineo.presentation.core.components.MovieDetailItem
+import com.adridoce.cineo.presentation.core.components.YoutubeVideoPlayer
 
 @Composable
 fun DetailScreen(
@@ -34,9 +35,17 @@ fun DetailScreen(
                 }
             }
 
-            uiState.errorMessage != null -> {}
+            uiState.errorMessage != null -> {
+//                TODO: Implementar
+            }
+            uiState.showTrailer && uiState.trailerKey != null-> {
+                YoutubeVideoPlayer(key = uiState.trailerKey!!)
+            }
             uiState.movie != null -> {
-                MovieDetailItem(uiState.movie!!)
+                MovieDetailItem(
+                    movie = uiState.movie!!,
+                    onPlayTrailer = { viewModel.onPlayTrailer() }
+                )
             }
         }
     }
