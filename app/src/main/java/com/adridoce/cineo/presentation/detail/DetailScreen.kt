@@ -38,14 +38,30 @@ fun DetailScreen(
             uiState.errorMessage != null -> {
 //                TODO: Implementar
             }
-            uiState.showTrailer && uiState.trailerKey != null-> {
-                YoutubeVideoPlayer(key = uiState.trailerKey!!)
-            }
+
+//            uiState.showTrailer && uiState.trailerKey != null -> {
+//                YoutubeVideoPlayer(
+//                    key = uiState.trailerKey!!,
+//                    onCloseTrailer = { viewModel.onCloseTrailer() }
+//                )
+//            }
+
             uiState.movie != null -> {
-                MovieDetailItem(
-                    movie = uiState.movie!!,
-                    onPlayTrailer = { viewModel.onPlayTrailer() }
-                )
+                Box(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    MovieDetailItem(
+                        movie = uiState.movie!!,
+                        onPlayTrailer = { viewModel.onPlayTrailer() }
+                    )
+
+                    if (uiState.showTrailer && uiState.trailerKey != null) {
+                        YoutubeVideoPlayer(
+                            key = uiState.trailerKey!!,
+                            onCloseTrailer = { viewModel.onCloseTrailer() }
+                        )
+                    }
+                }
             }
         }
     }

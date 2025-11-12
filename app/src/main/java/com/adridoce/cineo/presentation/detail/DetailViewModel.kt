@@ -64,6 +64,10 @@ class DetailViewModel @Inject constructor(
         _uiState.update { it.copy(showTrailer = true) }
     }
 
+    fun onCloseTrailer(){
+        _uiState.update { it.copy(showTrailer = false) }
+    }
+
 }
 
 data class DetailUiState(
